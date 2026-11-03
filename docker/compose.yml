@@ -29,7 +29,7 @@ x-app-env: &app-env
   env_file:
     # Missing on a fresh clone; the entrypoint then refuses to start with an
     # actionable message instead of compose failing with a file-not-found.
-    - path: ../.env
+    - path: .env
       required: false
 
 #: Resource ceilings for the two Python app services.
@@ -108,7 +108,7 @@ services:
     # it is open; the pools (DTK_DB_POOL_SIZE) decide how many are.
     command: ["postgres", "-c", "max_connections=100"]
     env_file:
-      - path: ../.env
+      - path: .env
         required: false
     environment:
       # POSTGRES_PASSWORD comes from ../.env. The master key does not: the
@@ -152,7 +152,7 @@ services:
     # Without this, redis would run as root.
     user: redis
     env_file:
-      - path: ../.env
+      - path: .env
         required: false
     environment:
       DTK_SECRET_KEY: ""
@@ -385,7 +385,7 @@ services:
     # to be settable in one place. `environment:` wins over `env_file:`, so only
     # what the container's own topology fixes is repeated below.
     env_file:
-      - path: ../.env
+      - path: .env
         required: false
     environment:
       # This container holds no credentials and never talks to the database, so
@@ -512,7 +512,7 @@ services:
       args:
         VERSION: ${DTK_IMAGE_TAG:-dev}
     env_file:
-      - path: ../.env
+      - path: .env
         required: false
     environment:
       # This container holds no credentials and never touches the database.
@@ -572,7 +572,7 @@ services:
       context: ..
       dockerfile: docker/Dockerfile.transcriber
     env_file:
-      - path: ../.env
+      - path: .env
         required: false
     environment:
       DTK_SECRET_KEY: ""
