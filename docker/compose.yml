@@ -24,12 +24,6 @@ x-app-image: &app-image
   # truth, and `up` on a clean machine should produce something runnable
   # without depending on a registry being reachable or current.
   image: ${DTK_IMAGE:-dtk-app}:${DTK_IMAGE_TAG:-dev}
-  build:
-    context: ..
-    dockerfile: docker/Dockerfile
-    args:
-      # Bump together with the runtime pin in pyproject.toml.
-      PYTHON_VERSION: "3.12.8"
 
 x-app-env: &app-env
   env_file:
