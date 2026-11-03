@@ -126,7 +126,7 @@ services:
     networks:
       - data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U dtk -d dtk"]
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -p 5432 -U dtk -d dtk"]
       interval: 10s
       timeout: 5s
       retries: 12
